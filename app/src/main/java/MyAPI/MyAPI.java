@@ -13,6 +13,6 @@ public interface MyAPI {
     @GET("heroes")
     Call<List<User>> getUser();
 
-    @POST("create")
+    @POST("heroes")
     Call<Void> registerUser(@Body User user);
 }
