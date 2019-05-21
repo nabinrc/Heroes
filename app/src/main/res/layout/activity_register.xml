@@ -7,6 +7,16 @@
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".Register">
+
+    <ImageView
+        android:id="@+id/etImage"
+        android:hint="Hero Name..."
+        android:src="@drawable/choose"
+        android:layout_width="400dp"
+        android:layout_gravity="center"
+        android:layout_height="400dp"
+        android:scaleType="centerInside"/>
+
     <EditText
         android:id="@+id/etName"
         android:layout_width="match_parent"

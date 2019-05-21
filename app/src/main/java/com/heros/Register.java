@@ -1,13 +1,23 @@
 package com.heros;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.CharacterPickerDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import MyAPI.MyAPI;
 import model.User;
@@ -16,11 +26,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Url;
 
 public class Register extends AppCompatActivity {
     private static final String BASE_URL="http://10.0.2.2:3000/";
     private EditText etName,etDescription;
     private Button btnUpload,btnShowDetails;
+    private ImageView imgImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +43,7 @@ public class Register extends AppCompatActivity {
         etDescription = findViewById(R.id.etDescription);
         btnUpload = findViewById(R.id.btnUpload);
         btnShowDetails = findViewById(R.id.btnShowDetails);
+        imgImage = findViewById(R.id.etImage);
 
         btnShowDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +65,12 @@ public class Register extends AppCompatActivity {
                 String name = etName.getText().toString();
                 String desc = etDescription.getText().toString();
 
+
+                Map<String,String> map = new HashMap<>();
+                map.put("name",name);
+                map.put("desc",desc);
+
+
                 User user = new User(image,id,name,desc);
 
                 Retrofit retrofit = new Retrofit.Builder()
@@ -61,7 +80,7 @@ public class Register extends AppCompatActivity {
 
                  MyAPI myAPI = retrofit.create(MyAPI.class);
 
-                Call<Void> voidCall = myAPI.registerUser(user);
+                Call<Void> voidCall = myAPI.addHero2(map);
 
                 voidCall.enqueue(new Callback<Void>() {
                     @Override
@@ -81,5 +100,21 @@ public class Register extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void StrictMode()
+    {
+        android.os.StrictMode.ThreadPolicy policy =
+                new android.os.StrictMode.ThreadPolicy.Builder().permitAll().build();
+        android.os.StrictMode.setThreadPolicy(policy);
+    }
+
+    private void loadFromUrl() throws IOException {
+        StrictMode();
+
+            String imgURl ="https://www.google.com/search?q=image&tbm=isch&source=iu&ictx=1&fir=A6JJqffgz3xzlM%253A%252CpFs_4Fcq5AgpmM%252C%252Fm%252F0jg24&vet=1&usg=AI4_-kStnHiKDbMRDo0Xa5QgWDtYbRLCkQ&sa=X&ved=2ahUKEwjhzrrV9aviAhVm73MBHRK0Ac0Q_B0wE3oECAoQBg#imgrc=A6JJqffgz3xzlM:";
+            URL url = new URL(imgURl);
+            imgImage.setImageBitmap(BitmapFactory.decodeStream((InputStream)url.getContent()));
+
     }
 }
