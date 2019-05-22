@@ -9,12 +9,12 @@
     tools:context=".Register">
 
     <ImageView
-        android:id="@+id/etImage"
+        android:id="@+id/imageProfile"
         android:hint="Hero Name..."
         android:src="@drawable/choose"
-        android:layout_width="400dp"
-        android:layout_gravity="center"
-        android:layout_height="400dp"
+        android:layout_width="300dp"
+        android:gravity="center"
+        android:layout_height="300dp"
         android:scaleType="centerInside"/>
 
     <EditText

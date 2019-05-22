@@ -3,6 +3,7 @@ package MyAPI;
 import java.util.List;
 import java.util.Map;
 
+import model.ImageResponse;
 import model.User;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -33,6 +34,11 @@ public interface MyAPI {
     @FormUrlEncoded
     @POST("heroes")
     Call<Void> addHero2(@FieldMap Map<String, String> map);
+
+    //for Uploading image
+    @Multipart
+    @POST("upload")
+    Call<ImageResponse> uploadImage(@Part MultipartBody.Part img);
 
 
 }

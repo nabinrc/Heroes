@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -20,6 +21,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
     private TextView tvData;
     private Button btnAddUser;
+    private ImageView imgProfile;
+
 
     private static final String BASE_URL="http://10.0.2.2:3000/";
     @Override
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         tvData = findViewById(R.id.tvData);
         btnAddUser = findViewById(R.id.btnAddUser);
+        imgProfile = findViewById(R.id.imageProfile);
 
         btnAddUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
 
         Retrofit retrofit = new Retrofit.Builder()
