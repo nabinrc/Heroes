@@ -5,18 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:layout_marginTop="20dp"
     tools:context=".Register">
 
     <ImageView
-        android:id="@+id/imageProfile"
-        android:hint="Hero Name..."
-        android:src="@drawable/choose"
-        android:layout_width="300dp"
-        android:gravity="center"
-        android:layout_height="300dp"
-        android:scaleType="centerInside"/>
-
+        android:layout_gravity="center"
+        android:id="@+id/imgImage"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        />
     <EditText
         android:id="@+id/etName"
         android:layout_width="match_parent"
